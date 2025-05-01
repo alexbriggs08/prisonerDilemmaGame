@@ -16,14 +16,12 @@ int main() {
         char playerChoice;
         std::cin >> playerChoice;
         endScreen(friendAI(), playerChoice);
-
-
-        return 0;
     }
+    return 0;
 }
 
 void introduction() {
-    std::cout << "Prisoners Dilemma. Choose to rat on your friend or stay silent. Are you ready? \n";
+    std::cout << "Prisoners Dilemma. Choose to rat on your friend or stay silent. Are you ready? (Y/N) \n";
 }
 
 void gameMessage() {
@@ -54,9 +52,11 @@ int endScreen(const int friendChoice, const char playerChoice) {
             break;
         case '2': // Talk (Player)
             if (friendChoice == 1) {
+                // AI kept quite
                 std::cout << "Your friend kept quiet (0 years)";
                 result = 0;
             } else {
+                // Player and AI talk
                 std::cout << "You both talked (5 years)";
                 result = 5;
             }
