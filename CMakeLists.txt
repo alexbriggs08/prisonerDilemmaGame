@@ -3,15 +3,17 @@ project(prisonersDilemaGame)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(prisonersDilemaGame src/main.cpp
-        src/config.h)
+# OpenGL setup
+if(APPLE)
+    find_library(OPENGL_LIBRARY OpenGL REQUIRED)
+    find_library(GLUT_LIBRARY GLUT REQUIRED)
+endif()
 
-target_include_directories(prisonersDilemaGame PRIVATE dependencies)
+add_executable(prisonersDilemaGame src/main.cpp)
 
-find_library(OpenGL_LIBRARY OpenGL)
-find_library(GLUT_LIBRARY GLUT)
-
-target_link_libraries(prisonersDilemaGame
-        ${OpenGL_LIBRARY}
-        ${GLUT_LIBRARY}
-)
+if(APPLE)
+    target_link_libraries(prisonersDilemaGame
+            ${OPENGL_LIBRARY}
+            ${GLUT_LIBRARY}
+    )
+endif()
